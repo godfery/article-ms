@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+
+    <title>{{ title }}页面</title>
+</head>
+<body>
+<div class="container" style="margin-top:100px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center">文章管理系统</h3>
+        </div>
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    {{ title }}
+                </div>
+                <div class="card-body">
+                    {% block page_content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{{ url_for('static',filename='js/jquery.slim.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>
