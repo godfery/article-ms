@@ -3,7 +3,8 @@ from flask import session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField, SelectField,IntegerField
 from wtforms.validators import DataRequired, EqualTo, ValidationError
-from models import User
+from models.models import User
+
 
 """
 登录表单：
@@ -237,6 +238,48 @@ class ArtEditForm(FlaskForm):
             'id': 'content'
         }
     )
+    submit = SubmitField(
+        u'保存更改',
+        render_kw={
+            'class': 'btn btn-primary'
+        }
+    )
+
+
+class CatForm(FlaskForm):
+    name = StringField(
+        label=u'分类名字',
+        description=u'分类名字',
+        validators=[
+            DataRequired(u'分类名字不能为空')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    
+    submit = SubmitField(
+        u'提交分类',
+        render_kw={
+            'class': 'btn btn-primary'
+        }
+    )
+
+
+class CatEditForm(FlaskForm):
+    name = StringField(
+        label=u'分类名字',
+        description=u'分类名字',
+        validators=[
+            DataRequired(u'分类名字不能为空')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    
     submit = SubmitField(
         u'保存更改',
         render_kw={

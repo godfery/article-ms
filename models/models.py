@@ -1,8 +1,10 @@
 # coding:utf-8
 from flask_sqlalchemy import SQLAlchemy
-from manager import app
+from .manager import app
 from werkzeug.security import check_password_hash
+# from flask import app
 db = SQLAlchemy(app)
+
 """"
 用户模型
 1.编号

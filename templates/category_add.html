@@ -1,0 +1,33 @@
+{% extends 'base_layout.html' %}
+
+{% block css%}
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ue/ueditor.config.js')}}"></script>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ue/ueditor.all.min.js')}}"></script>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ue/lang/zh-cn/zh-cn.js')}}"></script>
+{% endblock %}
+
+{% block page_content %}
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>分类名字</label>
+        {{ form.name }}
+        {% for v in form.name.errors %}
+        <p style="color:red;">{{v}}</p>
+        {% endfor %}
+    </div>
+    
+    {{ form.submit }}
+    {{ form.csrf_token }}
+</form>
+{% endblock %}
+
+{% block js %}
+<script>
+    var ue = UE.getEditor("content");
+    $(document).ready(function()
+    {
+        $("#m3").addClass("active");
+    });
+
+</script>
+{%  endblock %}

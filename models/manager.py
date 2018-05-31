@@ -1,10 +1,12 @@
 # coding:utf-8
 from flask import Flask
-import pymysql
 import os
+# import sys
+from config import ini
 
-app = Flask(__name__)
 
+app = Flask(__name__,instance_path=os.path.join(os.path.dirname(__file__), '../'))
+app.root_path = os.path.join(os.path.dirname(__file__), '../')
 app.config['SECRET_KEY'] = '12345678'
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@127.0.0.1:3306/article_web"
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
