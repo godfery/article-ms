@@ -1,6 +1,7 @@
 # coding:utf-8
 import os
 import datetime
+import math
 from flask import render_template, redirect, url_for, flash, session, Response, request
 from werkzeug.security import generate_password_hash
 # 用来定义一个安全的文件名称
@@ -9,7 +10,7 @@ from config.manager import app
 from route.func import user_login_required
 from models.models import User, db, Art
 from route.forms import ArtEditForm,ArtForm,LoginForm,RegisterForm
-from route.func import chang_name,get_category,write_to_file
+from route.func import chang_name,get_category,write_to_file,getPageContent
 # 登录装饰器
 
 
@@ -141,36 +142,62 @@ def art_edit(id):
     return render_template('art_edit.html', form=form, title=u'编辑文章')
 
 
+@app.template_filter('getYearMonth')
+def getYearMonth_filter(s):
+    if (type(s) == datetime.datetime):
+        a = s.strftime('%Y-%m-%d')
+        return a[0:7:]
+    else:
+        return s[0:7:]
+
+
+@app.template_filter('getDay')
+def getDay_filter(s):
+    if (type(s) == datetime.datetime):
+        a = s.strftime('%Y-%m-%d')
+        return a[8:10:]
+    else:
+        return s[8:10:]
+
+
 # 编辑文章
 @app.route('/art/gen/<int:id>/', methods=['GET', 'POST'])
 @user_login_required
 def art_gen(id):
 
     category = get_category()
-    print(category)
 
     for cat in category:
         # print(cat[0])
-        page_data = Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).paginate(page=1, per_page=10)
-        print(page_data.items)
-
-        for single in page_data.items:
-            art = single
-            # art = Art.query.get_or_404(ident=single.id)
-            resp = render_template('design/new_body.html', title=u'编辑文章',art=art)
-
-            write_to_file("new_%d.html" % art.id,resp)
+        total= len(Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).all())
+        # print(total)
+        totalPage = math.ceil(total / 10)
         
+        for i in range(1,totalPage+1):
+
+            print(i,"-----")
+            pageContent = getPageContent(cat[0],i,total,10)
+
+            page_data = Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).paginate(page=i, per_page=10)
+            # print(page_data.items)
+
+            for single in page_data.items:
+                art = single
+                # art = Art.query.get_or_404(ident=single.id)
+                resp = render_template('design/new_body.html', title=u'编辑文章',art=art)
+
+                write_to_file("news_%d.html" % art.id,resp)
+            
 
 
-        
-        # from unipath import Path
-        
+            
+            # from unipath import Path
+            
 
 
 
-        summary = render_template('design/new_list.html', title=u'编辑文章',page_data=page_data)
-        write_to_file("new_%d_%d.html" % (art.cate, 1), summary)
+            summary = render_template('design/new_list.html', title=u'编辑文章',page_data=page_data,pageContent=pageContent)
+            write_to_file("news_%d_%d.html" % (art.cate, i), summary)
     
 
     
