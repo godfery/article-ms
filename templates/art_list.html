@@ -30,6 +30,7 @@
         <td>
             <a href="{{url_for('art_edit',id=v.id)}}" class="btn btn-sm btn-outline-warning">编辑</a>
             <a href="{{url_for('art_del',id=v.id)}}" class="btn btn-sm btn-outline-danger">删除</a>
+            <a href="{{url_for('art_gen',id=v.id)}}" class="btn btn-sm btn-outline-danger">生成</a>
         </td>
     </tr>
     {% endfor %}

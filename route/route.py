@@ -2,10 +2,10 @@
 
 import os,datetime
 from flask import render_template, redirect, url_for, flash, session, Response, request,Flask
-from models.manager import app
-from models.models import db
-from models.category import Category
-from route.func import user_login_required,chang_name
+from config.manager import app
+# from models.models import db
+from models.category import Category,db
+from route.func import user_login_required,chang_name,get_category
 from route.forms import CatEditForm,CatForm
 
 # 发布文章
@@ -37,7 +37,7 @@ def cat_edit(id):
     if form.validate_on_submit():
         
         art.name = form.name.data
-        print(art.title)
+        print(art.name)
         
         # art.logo = logo
         db.session.add(art)
@@ -69,7 +69,7 @@ def cat_list(page):
     
     page_data = Category.query.order_by(
         Category.addtime.desc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=10)
     cate = [(1, u'科技'), (2, u'搞笑'), (3, u'军事')]
     return render_template('category_list.html', title=u"分类列表", page_data=page_data, cate=cate)
 

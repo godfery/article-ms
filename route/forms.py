@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField, SelectField,IntegerField
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 from models.models import User
+from route.func import get_category
 
 
 """
@@ -158,7 +159,7 @@ class ArtForm(FlaskForm):
         label=u'分类',
         description=u'分类',
         validators=[],
-        choices=[(1, u'科技'), (2, u'搞笑'), (3, u'军事')],
+        choices=get_category(),
         default=3,
         coerce=int,
         render_kw={
@@ -210,7 +211,7 @@ class ArtEditForm(FlaskForm):
         label=u'分类',
         description=u'分类',
         validators=[],
-        choices=[(1, u'科技'), (2, u'搞笑'), (3, u'军事')],
+        choices=get_category(),
         default=3,
         coerce=int,
         render_kw={

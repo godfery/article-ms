@@ -5,11 +5,11 @@ from flask import render_template, redirect, url_for, flash, session, Response, 
 from werkzeug.security import generate_password_hash
 # 用来定义一个安全的文件名称
 from werkzeug.utils import secure_filename
-from models.manager import app
+from config.manager import app
 from route.func import user_login_required
 from models.models import User, db, Art
 from route.forms import ArtEditForm,ArtForm,LoginForm,RegisterForm
-from route.func import chang_name
+from route.func import chang_name,get_category,write_to_file
 # 登录装饰器
 
 
@@ -141,6 +141,46 @@ def art_edit(id):
     return render_template('art_edit.html', form=form, title=u'编辑文章')
 
 
+# 编辑文章
+@app.route('/art/gen/<int:id>/', methods=['GET', 'POST'])
+@user_login_required
+def art_gen(id):
+
+    category = get_category()
+    print(category)
+
+    for cat in category:
+        # print(cat[0])
+        page_data = Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).paginate(page=1, per_page=10)
+        print(page_data.items)
+
+        for single in page_data.items:
+            art = single
+            # art = Art.query.get_or_404(ident=single.id)
+            resp = render_template('design/new_body.html', title=u'编辑文章',art=art)
+
+            write_to_file("new_%d.html" % art.id,resp)
+        
+
+
+        
+        # from unipath import Path
+        
+
+
+
+        summary = render_template('design/new_list.html', title=u'编辑文章',page_data=page_data)
+        write_to_file("new_%d_%d.html" % (art.cate, 1), summary)
+    
+
+    
+    
+
+
+    # print(resp)
+
+    return redirect(url_for('art_list',page=1))
+
 # 删除文章
 @app.route('/art/del/<int:id>/', methods=['GET'])
 @user_login_required
@@ -163,8 +203,8 @@ def art_list(page):
         user_id=user.id
     ).order_by(
         Art.addtime.desc()
-    ).paginate(page=page, per_page=1)
-    cate = [(1, u'科技'), (2, u'搞笑'), (3, u'军事')]
+    ).paginate(page=page, per_page=10)
+    cate = get_category()
     return render_template('art_list.html', title=u"文章列表", page_data=page_data, cate=cate)
 
 

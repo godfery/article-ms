@@ -1,7 +1,7 @@
 # coding:utf-8
 from flask_sqlalchemy import SQLAlchemy
-from models.manager import app
-db = SQLAlchemy(app)
+from config.manager import app
+from config.db import db
 
 
 class Category(db.Model):
