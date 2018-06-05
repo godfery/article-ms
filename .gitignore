@@ -1,0 +1,7 @@
+!.gitignore
+*__pycache__
+static/*
+gen/*
+*/.DS_Store
+.DS_Store
+*.pyc
