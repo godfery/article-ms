@@ -155,6 +155,45 @@ class ArtForm(FlaskForm):
             'placeholder': u'请输入标题'
         }
     )
+    header_title = StringField(
+        label=u'seo标题',
+        description=u'seo标题',
+        
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    header_keyword = StringField(
+        label=u'seo关键字',
+        description=u'seo关键字',
+        
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    header_desc = StringField(
+        label=u'seo描述',
+        description=u'seo描述',
+        
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    content_desc = StringField(
+        label=u'内容概要',
+        description=u'内容概要',
+        validators=[
+            DataRequired(u'内容概要不能为空')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入内容概要'
+        }
+    )
+
     cate = SelectField(
         label=u'分类',
         description=u'分类',
@@ -169,9 +208,6 @@ class ArtForm(FlaskForm):
     logo = FileField(
         label=u'封面',
         description=u'封面',
-        validators=[
-            DataRequired(u'封面不能为空')
-        ],
         render_kw={
             'class': 'form-control-file'
         }
@@ -207,6 +243,44 @@ class ArtEditForm(FlaskForm):
             'placeholder': u'请输入标题'
         }
     )
+    header_title = StringField(
+        label=u'seo标题',
+        description=u'seo标题',
+        
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    header_keyword = StringField(
+        label=u'seo关键字',
+        description=u'seo关键字',
+        
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    header_desc = StringField(
+        label=u'seo描述',
+        description=u'seo描述',
+        
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入'
+        }
+    )
+    content_desc = StringField(
+        label=u'内容概要',
+        description=u'内容概要',
+        validators=[
+            DataRequired(u'内容概要不能为空')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': u'请输入内容概要'
+        }
+    )
     cate = SelectField(
         label=u'分类',
         description=u'分类',
@@ -218,16 +292,7 @@ class ArtEditForm(FlaskForm):
             'class': 'form-control'
         }
     )
-    logo = FileField(
-        label=u'封面',
-        description=u'封面',
-        validators=[
-            DataRequired(u'封面不能为空')
-        ],
-        render_kw={
-            'class': 'form-control-file'
-        }
-    )
+    
     content = TextAreaField(
         label=u'内容',
         description=u'内容',

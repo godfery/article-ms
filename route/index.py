@@ -74,11 +74,15 @@ def art_add():
     if form.validate_on_submit():
         data = form.data
         # 上传LOGO
-        file = secure_filename(form.logo.data.filename)
-        logo = chang_name(file)
-        if not os.path.exists(app.config['UP']):
-            os.makedirs(app.config['UP'])
-        form.logo.data.save(app.config['UP'] + '/' + logo)
+        logo = ""
+        print(form.logo.data,"32322332")
+        if form.logo.data != "":
+            file = secure_filename(form.logo.data.filename)
+            logo = chang_name(file)
+
+            if not os.path.exists(app.config['UP']):
+                os.makedirs(app.config['UP'])
+            form.logo.data.save(app.config['UP'] + '/' + logo)
         # 获取用户ID
         user = User.query.filter_by(name=session['user']).first()
         user_id = user.id
@@ -86,6 +90,10 @@ def art_add():
         art = Art(
             title=data['title'],
             cate=data['cate'],
+            header_title = data['header_title'],
+            header_keyword = data['header_keyword'],
+            header_desc= data['header_desc'],
+            content_desc=data['content_desc'],
             user_id=user_id,
             logo=logo,
             content=data['content'],
@@ -107,28 +115,18 @@ def art_add():
 def art_edit(id):
     art = Art.query.get_or_404(ident=id)
     form = ArtEditForm()
+    print(form.validate_on_submit())
     if form.validate_on_submit():
-        if form.logo.data != art.logo:
-            # 上传LOGO
-            file = secure_filename(form.logo.data.filename)
-            logo = chang_name(file)
-            if not os.path.exists(app.config['UP']):
-                os.makedirs(app.config['UP'])
-            form.logo.data.save(app.config['UP'] + '/' + logo)
-            # 删除旧的LOGO
-            try:
-                os.remove(app.config['UP'] + '/' + art.logo)
-            except:
-                logo = form.logo.data
-        else:
-            print("1")
-            # logo = form.logo.data
-
-
+        
+        print(form)
         art.title = form.title.data
         print(art.title)
         art.cate = form.cate.data
         art.content = form.content.data
+        art.header_title = form.header_title.data
+        art.header_keyword = form.header_keyword.data
+        art.header_desc = form.header_desc.data
+        art.content_desc = form.content_desc.data
         # art.logo = logo
         db.session.add(art)
         db.session.commit()
@@ -138,7 +136,11 @@ def art_edit(id):
     form.title.data = art.title
     form.cate.data = art.cate
     form.content.data = art.content
-    form.logo.data = art.logo
+    form.header_title.data = art.header_title
+    form.header_keyword.data = art.header_keyword
+    form.header_desc.data = art.header_desc
+    form.content_desc.data = art.content_desc
+
     return render_template('art_edit.html', form=form, title=u'编辑文章')
 
 

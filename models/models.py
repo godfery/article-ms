@@ -1,9 +1,7 @@
 # coding:utf-8
-
-
-from flask_sqlalchemy import SQLAlchemy
-from config.manager import app
-from config.db      import db
+import sys,os 
+sys.path.append(os.path.realpath(os.path.dirname(os.path.realpath(__file__))))
+from config.db import db
 from werkzeug.security import check_password_hash
 # from flask import app
 
@@ -47,9 +45,13 @@ class Art(db.Model):
     __tablename__ = 'art'
     id = db.Column(db.Integer, primary_key=True)  # 编号
     title = db.Column(db.String(100), nullable=False)  # 标题
+    header_title = db.Column(db.String(200), nullable=True)  # 
+    header_keyword = db.Column(db.String(200), nullable=True)  # 
+    header_desc = db.Column(db.String(200), nullable=True)  # 
+    content_desc = db.Column(db.String(200), nullable=True)  # 
     cate = db.Column(db.Integer, nullable=False)  # 分类
     user_id = db.Column(db.Integer, nullable=False)  # 作者ID
-    logo = db.Column(db.String(100), nullable=False)  # LOGO
+    logo = db.Column(db.String(100), nullable=True)  # LOGO
     content = db.Column(db.Text, nullable=False)  # 内容
     addtime = db.Column(db.DateTime, nullable=False)  # 发布时间
 
@@ -58,4 +60,5 @@ class Art(db.Model):
 
 
 if __name__ == '__main__':
+    
     db.create_all()
