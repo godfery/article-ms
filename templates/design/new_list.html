@@ -47,7 +47,7 @@
                     <span class="nav_bg"></span>
                 </li>
                 <li>
-                    <a href="https://www.lefou666.com/fk.html" title="房卡游戏开发">房卡棋牌平台</a>
+                    <a href="https://www.lefou666.com/fk.html" title="棋牌游戏开发">棋牌游戏开发</a>
                     <img src="https://www.lefou666.com/plmnhytf12f3/hot.gif" style="position: absolute;top: 5px;right: 0;width: 22px;z-index: 2;">
                     <span class="nav_bg"></span>
                 </li>
@@ -59,11 +59,11 @@
                 </li>
                 <!--<li><a href="tz.html" title="手机棋牌游戏开发">棋牌投资</a><span class="nav_bg"></span></li>-->
                 <li class="over">
-                    <a href="https://www.lefou666.com/News.html" title="新闻中心">新闻中心</a>
+                    <a href="https://www.lefou666.com/gen/news_1_1.html" title="新闻中心">新闻中心</a>
                     <span class="nav_bg"></span>
                 </li>
                 <li>
-                    <a href="Chttps://www.lefou666.com/ase.html" title="成功案例">成功案例</a>
+                    <a href="https://www.lefou666.com/Case.html" title="成功案例">成功案例</a>
                     <span class="nav_bg"></span>
                 </li>
                 <li>
@@ -122,15 +122,14 @@
         </div>
         <div class="news_tab">
             <ul>
-                <li class="over" rel="334">
-                    <a title="手机棋牌" href="">公司新闻</a>
-                </li>
-                <li rel="335">
-                    <a title="专业棋牌" href="">业界新闻</a>
-                </li>
-                <li rel="339">
-                    <a title="棋牌开发" href="">运营网摘</a>
-                </li>
+
+                    {% for v in category %}
+                        <li class="over" rel="{{v[0]}}">
+                            <a title="{{v[1]}}" href="news_{{v[0]}}_1.html">{{v[1]}}</a>
+                        </li>
+                    {% endfor %}
+                
+                
             </ul>
         </div>
     </div>

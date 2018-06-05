@@ -78,9 +78,14 @@
     </div>
     <div class="news_tab">
         <ul>
-            <li class="over" rel="334"><a title="手机棋牌" href="#">公司新闻</a></li>
+                {% for v in category %}
+                        <li class="over" rel="{{v[0]}}">
+                            <a title="{{v[1]}}" href="news_{{v[0]}}_1.html">{{v[1]}}</a>
+                        </li>
+                    {% endfor %}
+            <!-- <li class="over" rel="334"><a title="手机棋牌" href="#">公司新闻</a></li>
             <li rel="335"><a title="专业棋牌" href="#">业界新闻</a> </li>
-            <li rel="339"><a title="棋牌开发" href="#">运营网摘</a></li>
+            <li rel="339"><a title="棋牌开发" href="#">运营网摘</a></li> -->
         </ul>
     </div>
 </div>

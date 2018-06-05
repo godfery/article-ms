@@ -184,7 +184,7 @@ def art_gen(id):
             for single in page_data.items:
                 art = single
                 # art = Art.query.get_or_404(ident=single.id)
-                resp = render_template('design/new_body.html', title=u'编辑文章',art=art)
+                resp = render_template('design/new_body.html', title=u'编辑文章',art=art,category=category)
 
                 write_to_file("news_%d.html" % art.id,resp)
             
@@ -196,7 +196,7 @@ def art_gen(id):
 
 
 
-            summary = render_template('design/new_list.html', title=u'编辑文章',page_data=page_data,pageContent=pageContent)
+            summary = render_template('design/new_list.html', title=u'编辑文章',page_data=page_data,pageContent=pageContent,category=category)
             write_to_file("news_%d_%d.html" % (art.cate, i), summary)
     
 
