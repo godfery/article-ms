@@ -241,7 +241,7 @@ def codes():
     from codes import Codes
     c = Codes()
     info = c.create_code()
-    image = os.path.join(os.path.dirname(__file__), 'static/codes') + '/' + info['img_name']
+    image = os.path.join(app.root_path, 'static/codes') + '/' + info['img_name']
     with open(image, 'rb') as f:
         image = f.read()
         print(image)
