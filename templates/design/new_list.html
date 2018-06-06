@@ -100,7 +100,14 @@
                             <a href="news_{{v.id}}.html" title="{{v.title}}">{{v.title}} </a>
                         </dt>
                         <dd class="text">
-                            {{v.content | truncate(30, True)}}</dd>
+                            {% if v.content_desc != "" %} 
+                            {{v.content_desc}}
+                            {% else %}
+                            {{v.content | truncate(30, True)}}
+                            {% endif %}
+                            
+                        
+                        </dd>
 
                     </dl>
                 </li>
