@@ -1,0 +1,40 @@
+{% extends 'base_layout.html' %} {% block css%}
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ue/ueditor.config.js')}}"></script>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ue/ueditor.all.min.js')}}"></script>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ue/lang/zh-cn/zh-cn.js')}}"></script> {% endblock %} {% block page_content %}
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>标题</label>
+        {{ form.title }} {% for v in form.title.errors %}
+        <p style="color:red;">{{v}}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>存储名字</label>
+        {{ form.saveName }} {% for v in form.saveName.errors %}
+        <p style="color:red;">{{v}}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>存储路径</label>
+        {{ form.toPath }} {% for v in form.toPath.errors %}
+        <p style="color:red;">{{v}}</p>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label>内容</label>
+        {{ form.content }} {% for v in form.content.errors %}
+        <p style="color:red;">{{v}}</p>
+        {% endfor %}
+    </div>
+    {{ form.submit }} {{ form.csrf_token }}
+</form>
+{% endblock %} {% block js %}
+<script>
+    var ue = UE.getEditor("content");
+    $(document).ready(function () {
+        $("#m4").addClass("active");
+    });
+
+</script> {% endblock %}

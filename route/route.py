@@ -1,12 +1,13 @@
 # coding:utf-8
 
-import os,datetime
-from flask import render_template, redirect, url_for, flash, session, Response, request,Flask
+import datetime
+from flask import render_template, redirect, url_for, request,flash
 from config.manager import app
 # from models.models import db
 from models.category import Category,db
-from route.func import user_login_required,chang_name,get_category
+from route.func import user_login_required
 from route.forms import CatEditForm,CatForm
+
 
 # 发布文章
 @app.route('/cat/add/', methods=['GET', 'POST'])

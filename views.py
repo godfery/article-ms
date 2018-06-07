@@ -4,6 +4,7 @@ from flask import render_template, redirect, url_for, flash, session, Response, 
 from config.manager import app
 import route.index 
 import route.route
+import route.template
 from route.func import write_to_file
 
 if __name__ == '__main__':

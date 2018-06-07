@@ -37,7 +37,7 @@ def html_decode(s):
     NOT remove normal HTML tags like <p>.
     """
     htmlCodes = (("'", '&#39;'), ('"', '&quot;'), ('>', '&gt;'), ('<', '&lt;'),
-                 ('&', '&amp;'))
+                 ('&', '&amp;'),(' ','&nbsp;'),('"','&#34;'))
     for code in htmlCodes:
         s = s.replace(code[1], code[0])
     return s
@@ -52,6 +52,13 @@ def write_to_file(file, content):
     u.write_file(html_decode(content))
     # print(p.parent)
 
+
+def write_to_file_path(filename,content,path):
+    from unipath import Path
+
+    p = Path(path,filename)
+    p.write_file(html_decode(content))
+    
 
 def getPageContent(cate,curpage,total,perpage=10):
     import math
