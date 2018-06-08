@@ -234,6 +234,7 @@ def art_list(page):
         Art.addtime.desc()
     ).paginate(page=page, per_page=10)
     cate = get_category()
+    print(cate)
     return render_template('art_list.html', title=u"文章列表", page_data=page_data, cate=cate)
 
 

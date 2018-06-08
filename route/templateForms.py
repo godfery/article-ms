@@ -52,7 +52,7 @@ class TemplateForm(FlaskForm):
             DataRequired(u'内容不能为空')
         ],
         render_kw={
-            'style': 'height:300px;',
+            'style': 'height:300px;width:800px',
             'id': 'content'
         }
     )
@@ -107,7 +107,7 @@ class TemplateEditForm(FlaskForm):
             DataRequired(u'内容不能为空')
         ],
         render_kw={
-            'style': 'height:300px;',
+            'style': 'height:300px;width:800px',
             'id': 'content'
         }
     )

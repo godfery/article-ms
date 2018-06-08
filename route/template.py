@@ -39,7 +39,7 @@ def template_edit(id):
     tem = Template.query.get_or_404(ident=id)
     form = TemplateEditForm()
     if form.validate_on_submit():
-        
+        print(form.content.data)
         tem.title = form.title.data
         tem.saveName = form.saveName.data
         tem.toPath = form.toPath.data
