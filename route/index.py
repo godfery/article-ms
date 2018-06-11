@@ -166,18 +166,26 @@ def getDay_filter(s):
 @app.route('/art/gen/<int:id>/', methods=['GET', 'POST'])
 @user_login_required
 def art_gen(id):
-
+    from util.pageContext import PageContext
     category = get_category()
 
+
+    
     for cat in category:
         # print(cat[0])
-        total= len(Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).all())
+        totalField = Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).all()
+        # print(totalField)
+        total = len(totalField)
         # print(total)
         totalPage = math.ceil(total / 10)
         
-        for i in range(1,totalPage+1):
+        pageContext = PageContext(totalField)
 
-            print(i,"-----")
+        
+
+        for i in range(1, totalPage + 1):
+
+            
             pageContent = getPageContent(cat[0],i,total,10)
 
             page_data = Art.query.filter_by(cate=cat[0]).order_by(Art.addtime.desc()).paginate(page=i, per_page=10)
@@ -185,8 +193,11 @@ def art_gen(id):
 
             for single in page_data.items:
                 art = single
+                
+                pageCon = pageContext.getPageContext(art.id)
                 # art = Art.query.get_or_404(ident=single.id)
-                resp = render_template('design/new_body.html', title=u'编辑文章',art=art,category=category)
+
+                resp = render_template('design/new_body.html', title=u'编辑文章',art=art,category=category,pageContext=pageCon)
 
                 write_to_file("news_%d.html" % art.id,resp)
             
