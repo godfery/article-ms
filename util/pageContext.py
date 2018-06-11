@@ -32,14 +32,14 @@ class PageContext(object):
                 artPrev = self.pageDic.get(prevId)
                 prev = '<p> \
                 <a href="/gen/news_'+str(artPrev.id)+'.html">上一篇：\
-                    怎样快速地开发一款棋牌游戏，需要多长时间?</a> \
+                    '+artPrev.title+'</a> \
                 </p>'
                 print(prev)
             if (nextId != None and nextId != i):
                 artPrev = self.pageDic.get(nextId)
                 next = '<p> \
                 <a href="/gen/news_'+str(artPrev.id)+'.html">下一篇：\
-                    怎样快速地开发一款棋牌游戏，需要多长时间?</a> \
+                    '+artPrev.title+'</a> \
                 </p>'
                 print(next) 
         return prev + next
