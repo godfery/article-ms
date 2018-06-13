@@ -47,19 +47,19 @@
                     <span class="nav_bg"></span>
                 </li>
                 <li>
-                    <a href="https://www.lefou666.com/fk.html" title="棋牌游戏开发">棋牌游戏开发</a>
+                    <a href="https://www.lefou666.com/qipaiyouxi.html" title="棋牌游戏开发">棋牌游戏开发</a>
                     <img src="https://www.lefou666.com/plmnhytf12f3/hot.gif" style="position: absolute;top: 5px;right: 0;width: 22px;z-index: 2;">
                     <span class="nav_bg"></span>
                 </li>
 
 
                 <li>
-                    <a href="https://www.lefou666.com/Mobile.html" title="手机棋牌定制">手机棋牌定制</a>
+                    <a href="https://www.lefou666.com/shoujiqipai.html" title="手机棋牌定制">手机棋牌定制</a>
                     <span class="nav_bg"></span>
                 </li>
                 <!--<li><a href="tz.html" title="手机棋牌游戏开发">棋牌投资</a><span class="nav_bg"></span></li>-->
                 <li class="over">
-                    <a href="https://www.lefou666.com/gen/news_1_1.html" title="新闻中心">新闻中心</a>
+                    <a href="https://www.lefou666.com/news.html" title="新闻中心">新闻中心</a>
                     <span class="nav_bg"></span>
                 </li>
                 <li>
@@ -97,7 +97,7 @@
                         </dd>
 
                         <dt>
-                            <a href="news_{{v.id}}.html" title="{{v.title}}">{{v.title}} </a>
+                            <a href="/news/{{v.id}}.html" title="{{v.title}}">{{v.title}} </a>
                         </dt>
                         <dd class="text">
                             {% if v.content_desc != "" %} 
@@ -132,7 +132,7 @@
 
                     {% for v in category %}
                         <li class="over" rel="{{v[0]}}">
-                            <a title="{{v[1]}}" href="news_{{v[0]}}_1.html">{{v[1]}}</a>
+                            <a title="{{v[1]}}" href="/news/{{v[0]}}_1.html">{{v[1]}}</a>
                         </li>
                     {% endfor %}
                 

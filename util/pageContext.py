@@ -14,7 +14,7 @@ class PageContext(object):
             self.pageDic[i.id] = i
             self.doubleLink.append(i.id)
 
-    
+    """得到 上下文的数据  """
     def getPageContext(self,i):
         
         # print(self.pageDic.get(i))
@@ -34,14 +34,15 @@ class PageContext(object):
                 <a href="/gen/news_'+str(artPrev.id)+'.html">上一篇：\
                     '+artPrev.title+'</a> \
                 </p>'
-                print(prev)
+                
             if (nextId != None and nextId != i):
                 artPrev = self.pageDic.get(nextId)
                 next = '<p> \
                 <a href="/gen/news_'+str(artPrev.id)+'.html">下一篇：\
                     '+artPrev.title+'</a> \
                 </p>'
-                print(next) 
         return prev + next
             
 
+if __name__ == "__main__":
+    pass

@@ -199,7 +199,7 @@ def art_gen(id):
 
                 resp = render_template('design/new_body.html', title=u'编辑文章',art=art,category=category,pageContext=pageCon)
 
-                write_to_file("news_%d.html" % art.id,resp)
+                write_to_file("%d.html" % art.id,resp)
             
 
 
@@ -210,7 +210,7 @@ def art_gen(id):
 
 
             summary = render_template('design/new_list.html', title=u'编辑文章',page_data=page_data,pageContent=pageContent,category=category)
-            write_to_file("news_%d_%d.html" % (art.cate, i), summary)
+            write_to_file("%d_%d.html" % (art.cate, i), summary)
     
 
     

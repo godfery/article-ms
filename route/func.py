@@ -47,7 +47,7 @@ def write_to_file(file, content):
     from unipath import Path
 
     p = Path(os.path.realpath(__name__))
-    u = Path(p.parent, "gen", file)
+    u = Path(p.parent, "news", file)
 
     u.write_file(html_decode(content))
     # print(p.parent)
@@ -78,63 +78,63 @@ def getPageContent(cate,curpage,total,perpage=10):
 
     if(totalPage > 5):
         if (curpage == 1):
-            middlestr = "<a href='news_" + str(cate) + "_1.html#__page'>1</a>&nbsp; \
-                <a href='news_" + str(cate) + "_2.html#__page'>2</a>&nbsp; \
-                <a href='news_" + str(cate) + "_3.html#__page'>3</a>&nbsp; \
-                <a href='news_" + str(cate) + "_4.html#__page'>4</a>&nbsp; \
-                <a href='news_" + str(cate) + "_5.html#__page'>5</a>... \
-                <a href='news_" + str(
+            middlestr = "<a href='/news/" + str(cate) + "_1.html#__page'>1</a>&nbsp; \
+                <a href='/news/" + str(cate) + "_2.html#__page'>2</a>&nbsp; \
+                <a href='/news/" + str(cate) + "_3.html#__page'>3</a>&nbsp; \
+                <a href='/news/" + str(cate) + "_4.html#__page'>4</a>&nbsp; \
+                <a href='/news/" + str(cate) + "_5.html#__page'>5</a>... \
+                <a href='/news/" + str(
                 cate) + "_"+str(totalPage)+".html#__page'>"+str(totalPage)+"</a>&nbsp; "
         elif (curpage > 1 and curpage < totalPage - 5):
             middlestr = "<span class='current'>1</span>...&nbsp;\
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 curpage - 2) + ".html#__page'>" + str(
                 curpage - 2) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 curpage - 1) + ".html#__page'>" + str(
                     curpage - 1) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 curpage ) + ".html#__page'>" + str(
                         curpage) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 curpage + 1) + ".html#__page'>" + str(
                             curpage + 1) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 curpage + 2) + ".html#__page'>" + str(
                                 curpage + 2) + "</a>... \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                                     totalPage) + ".html#__page'>" + str(
                                     totalPage) + "</a>&nbsp; "
         else:
             middlestr = "<span class='current'>1</span>...&nbsp;\
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 totalPage - 4) + ".html#__page'>" + str(
                 totalPage - 4) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 totalPage - 3) + ".html#__page'>" + str(
                     totalPage - 3) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 totalPage - 2) + ".html#__page'>" + str(
                         totalPage - 2) + "</a>&nbsp; \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 totalPage -1) + ".html#__page'>" + str(
                             totalPage - 1) + "</a> \
-                <a href='news_" + str(cate) + "_" + str(
+                <a href='/news/" + str(cate) + "_" + str(
                 totalPage ) + ".html#__page'>" + str(
                                 totalPage) + "</a>&nbsp; "
     else:
         for aa in range(1,totalPage+1):
-            middlestr = "<a href='news_" + str(cate) + "_"+str(aa)+".html#__page'>"+str(aa)+"</a>&nbsp;"
+            middlestr = "<a href='/news/" + str(cate) + "_"+str(aa)+".html#__page'>"+str(aa)+"</a>&nbsp;"
 
 
-    firststr = "<a href='news_" + str(
+    firststr = "<a href='/news/" + str(
         cate) + "_1.html#__page'>首页</a>&nbsp; \
-            <a href='news_" + str(cate) + "_" + str(
+            <a href='/news/" + str(cate) + "_" + str(
             prepage) + ".html#__page'>&laquo;上一页</a>&nbsp;  "
 
-    endstr = "        <a href='news_" + str(cate) + "_" + str(
+    endstr = "        <a href='/news/" + str(cate) + "_" + str(
         nextpage) + ".html#__page'>下一页&raquo;</a>&nbsp; \
-            <a href='news_" + str(cate) + "_" + str(
+            <a href='/news/" + str(cate) + "_" + str(
             totalPage) + ".html#__page'>尾页</a> \
             <a href='#__page' id='__page' style='border:none;'>共 \
             <b>" + str(total) + "</b>条&nbsp;&nbsp; \
