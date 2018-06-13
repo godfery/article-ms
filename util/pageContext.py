@@ -31,14 +31,14 @@ class PageContext(object):
             if (prevId != None and prevId != i):
                 artPrev = self.pageDic.get(prevId)
                 prev = '<p> \
-                <a href="/gen/news_'+str(artPrev.id)+'.html">上一篇：\
+                <a href="/news/'+str(artPrev.id)+'.html">上一篇：\
                     '+artPrev.title+'</a> \
                 </p>'
                 
             if (nextId != None and nextId != i):
                 artPrev = self.pageDic.get(nextId)
                 next = '<p> \
-                <a href="/gen/news_'+str(artPrev.id)+'.html">下一篇：\
+                <a href="/news/'+str(artPrev.id)+'.html">下一篇：\
                     '+artPrev.title+'</a> \
                 </p>'
         return prev + next
